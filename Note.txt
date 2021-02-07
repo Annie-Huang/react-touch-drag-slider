@@ -1,0 +1,8 @@
+Build a Touch Slider with HTML, CSS & JavaScript (https://www.youtube.com/watch?v=5bxFSOA5JYo)
+
+https://github.com/bushblade/react-touch-drag-slider
+https://github.com/bushblade/Full-Screen-Touch-Slider
+https://codepen.io/bradtraversy/pen/ExNVwgZ
+https://github.com/Annie-Huang/react-touch-drag-slider
+===========================================================
+
