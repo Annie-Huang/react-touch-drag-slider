@@ -6,3 +6,4 @@ https://codepen.io/bradtraversy/pen/ExNVwgZ
 https://github.com/Annie-Huang/react-touch-drag-slider
 ===========================================================
 
+C:\react\react-touch-drag-slider>npm init -y
