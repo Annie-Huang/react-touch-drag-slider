@@ -50,6 +50,7 @@ function touchStart(index) {
 function touchEnd() {
   console.log('end');
   isDragging = false;
+  cancelAnimationFrame(animationID); // Stop the animation once the mouse is release.
 }
 
 function touchMove(event) {
