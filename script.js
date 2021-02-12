@@ -1,5 +1,5 @@
 const slider = document.querySelector('.slider-container'),
-  slides = document.querySelector('.slider-container');
+  slides = document.querySelectorAll('.slide');
 
 let isDragging = false,
   startPosition = 0,
@@ -23,3 +23,17 @@ slides.forEach((slide, index) => {
   slide.addEventListener('mouseleave', touchEnd); // Mouse leave the window
   slide.addEventListener('mousemove', touchMove);
 });
+
+function touchStart(index) {
+  return function (event) {
+    console.log('start');
+  };
+}
+
+function touchEnd() {
+  console.log('end');
+}
+
+function touchMove() {
+  console.log('move');
+}
