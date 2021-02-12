@@ -24,6 +24,15 @@ slides.forEach((slide, index) => {
   slide.addEventListener('mousemove', touchMove);
 });
 
+// This is to stop right click on mouse to bring up menu.
+// and stop touching for too long on mobile screen which will bring up menu.
+// Disable context menu.
+window.oncontextmenu = function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  return false;
+};
+
 function touchStart(index) {
   return function (event) {
     console.log('start');
