@@ -54,3 +54,10 @@ body {
   text-decoration: none;
   padding: 1rem 1.5rem;
 }
+
+.grabbing {
+  cursor: grabbing;
+}
+.grabbing .slide img {
+  transform: scale(0.9);
+}
