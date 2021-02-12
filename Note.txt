@@ -7,3 +7,7 @@ https://github.com/Annie-Huang/react-touch-drag-slider
 ===========================================================
 
 C:\react\react-touch-drag-slider>npm init -y
+
+You can do F12 to bring up devtool, because we already add
+user-select: none;
+into css, so right click on the page will not work.

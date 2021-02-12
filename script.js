@@ -2,7 +2,7 @@ const slider = document.querySelector('.slider-container'),
   slides = document.querySelectorAll('.slide');
 
 let isDragging = false,
-  startPosition = 0,
+  startPos = 0,
   currentTranslate = 0,
   prevTranslate = 0,
   animationID = 0,
@@ -36,6 +36,10 @@ window.oncontextmenu = function (event) {
 function touchStart(index) {
   return function (event) {
     console.log('start');
+    console.log("event.type.includes('mouse')=", event.type.includes('mouse'));
+    currentIndex = index;
+    startPos = getPositionX(event);
+    console.log('startPos=', startPos);
     isDragging = true;
   };
 }
@@ -49,4 +53,8 @@ function touchMove() {
   if (isDragging) {
     console.log('move');
   }
+}
+
+function getPositionX(event) {
+  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
 }
