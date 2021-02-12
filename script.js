@@ -52,9 +52,12 @@ function touchEnd() {
   isDragging = false;
 }
 
-function touchMove() {
+function touchMove(event) {
   if (isDragging) {
     console.log('move');
+    const currentPosition = getPositionX(event);
+    // You can see if you press down the mouse and move left and right, the image will move with you.
+    currentTranslate = prevTranslate + currentPosition - startPos;
   }
 }
 
