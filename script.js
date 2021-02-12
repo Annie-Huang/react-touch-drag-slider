@@ -44,6 +44,8 @@ function touchStart(index) {
 
     // https://css-tricks.com/using-requestanimationframe/
     animationID = requestAnimationFrame(animation);
+
+    slider.classList.add('grabbing');
   };
 }
 
@@ -51,6 +53,8 @@ function touchEnd() {
   console.log('end');
   isDragging = false;
   cancelAnimationFrame(animationID); // Stop the animation once the mouse is release.
+
+  slider.classList.remove('grabbing');
 }
 
 function touchMove(event) {
