@@ -54,6 +54,12 @@ function touchEnd() {
   isDragging = false;
   cancelAnimationFrame(animationID); // Stop the animation once the mouse is release.
 
+  // Slap into a new image if the movement has passed the current image limit and land onto the next|prev image.
+  const moveBy = currentTranslate - prevTranslate;
+  if (moveBy < -100 && currentIndex < slides.length - 1) currentIndex += 1;
+  if (moveBy < 100 && currentIndex > 0) currentIndex -= 1;
+  setPositionByIndex();
+
   slider.classList.remove('grabbing');
 }
 
@@ -79,4 +85,10 @@ function animation() {
 
 function setSliderPosition() {
   slider.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+function setPositionByIndex() {
+  currentTranslate = currentIndex * -window.innerWidth;
+  prevTranslate = currentTranslate;
+  setSliderPosition();
 }
