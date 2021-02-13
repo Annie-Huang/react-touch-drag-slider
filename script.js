@@ -20,8 +20,8 @@ slides.forEach((slide, index) => {
   // Mouse events
   slide.addEventListener('mousedown', touchStart(index));
   slide.addEventListener('mouseup', touchEnd);
-  slide.addEventListener('mouseleave', touchEnd); // Mouse leave the window
   slide.addEventListener('mousemove', touchMove);
+  slide.addEventListener('mouseleave', touchEnd); // Mouse leave the window
 });
 
 // This is to stop right click on mouse to bring up menu.
@@ -33,6 +33,9 @@ window.oncontextmenu = function (event) {
   return false;
 };
 
+function getPositionX(event) {
+  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+}
 function touchStart(index) {
   return function (event) {
     console.log('start');
@@ -49,20 +52,6 @@ function touchStart(index) {
   };
 }
 
-function touchEnd() {
-  console.log('end');
-  isDragging = false;
-  cancelAnimationFrame(animationID); // Stop the animation once the mouse is release.
-
-  // Slap into a new image if the movement has passed the current image limit and land onto the next|prev image.
-  const moveBy = currentTranslate - prevTranslate;
-  if (moveBy < -100 && currentIndex < slides.length - 1) currentIndex += 1;
-  if (moveBy < 100 && currentIndex > 0) currentIndex -= 1;
-  setPositionByIndex();
-
-  slider.classList.remove('grabbing');
-}
-
 function touchMove(event) {
   if (isDragging) {
     console.log('move');
@@ -72,9 +61,21 @@ function touchMove(event) {
   }
 }
 
-function getPositionX(event) {
-  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+function touchEnd() {
+  console.log('end');
+  cancelAnimationFrame(animationID); // Stop the animation once the mouse is release.
+  isDragging = false;
+
+  // Slap into a new image if the movement has passed the current image limit and land onto the next|prev image.
+  const movedBy = currentTranslate - prevTranslate;
+  if (movedBy < -100 && currentIndex < slides.length - 1) currentIndex += 1;
+  if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+  setPositionByIndex();
+
+  slider.classList.remove('grabbing');
 }
+
+
 
 function animation() {
   setSliderPosition();
@@ -83,12 +84,12 @@ function animation() {
   if (isDragging) requestAnimationFrame(animation);
 }
 
-function setSliderPosition() {
-  slider.style.transform = `translateX(${currentTranslate}px)`;
-}
-
 function setPositionByIndex() {
   currentTranslate = currentIndex * -window.innerWidth;
   prevTranslate = currentTranslate;
   setSliderPosition();
+}
+
+function setSliderPosition() {
+  slider.style.transform = `translateX(${currentTranslate}px)`;
 }
